@@ -1,16 +1,14 @@
 """Main file
-By Damon Jones for 11PRG 1.7 2020
+By Damon Jones for 11PRG 1.7 2020 Practice
 """
 # Imports
 import json
 import os
 
+from order import Order
+
 
 # Functions
-def get_name() -> str:
-    user_name = input("")
-
-
 def load_ingredients(_dir : str) -> dict:
     ingredients = {}
     for filename in os.listdir(_dir):
@@ -28,12 +26,13 @@ def load_restrictions(_dir : str) -> dict:
 
 # Main
 def main() -> int:
+    # Load Stuff
     ingredients = load_ingredients("Data/Ingredients")
-    restrictions = load_restrictions("Data")
 
-    
     return 1
 
 
 if __name__ == "__main__":
-    main()
+    status = main()
+
+    print(f"Exited with status: {status}")
