@@ -33,13 +33,14 @@ def get_bread(breads : list) -> str:
     Returns:
         str: The chosen bread.
     """
-    print("What Bread Would you Like?\n")
+    print("\nWhat Bread Would you Like?\n")
     for i in range(len(breads)):
         print(f"{i + 1}\t: {breads[i]}")
+    print("\n")
     
     input_valid = False
     while not input_valid:
-        bread_selection = input(f"\nEnter a Number Between 1 and {len(breads)}: ")
+        bread_selection = input(f"Enter a Number Between 1 and {len(breads)}: ")
         try:
             bread_selection = int(bread_selection)
         except:
@@ -50,7 +51,29 @@ def get_bread(breads : list) -> str:
 
 
 def get_meat(meats : list) -> str:
-    pass
+    """Gets user input for which meat they'd like.
+
+    Args:
+        meats (list): List of meats to choose from.
+
+    Returns:
+        str: The chosen meat.
+    """
+    print("\nWhich Meat Would you Like?\n")
+    for i in range(len(meats)):
+        print(f"{i + 1}\t: {meats[i]}")
+    print("\n")
+    
+    input_valid = False
+    while not input_valid:
+        meat_selection = input(f"Enter a Number Between 1 and {len(meats)}: ")
+        try:
+            meat_selection = int(meat_selection)
+        except:
+            continue
+        input_valid = meat_selection >= 1 and meat_selection <= len(meats)
+    
+    return meats[meat_selection - 1]
 
 
 def get_options(options : list) -> list:
@@ -64,8 +87,10 @@ def main() -> int:
 
     sandwich = Order()
     sandwich.bread = get_bread(ingredients["breads"])
+    sandwich.meat = get_meat(ingredients["meats"])
 
     print(sandwich.bread)
+    print(sandwich.meat)
 
     return 1
 
