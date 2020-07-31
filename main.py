@@ -24,10 +24,34 @@ def load_restrictions(_dir : str) -> dict:
     return restrictions
 
 
+def get_bread(breads : list) -> str:
+    print("What Bread Would you Like?\n")
+    for i in range(len(breads)):
+        print(f"{i + 1}\t: {breads[i]}")
+    
+    bread_selection = input(f"\nEnter a Number Between 1 and {len(breads)}: ")
+    bread_selection = int(bread_selection)
+    
+    return breads[bread_selection - 1]
+
+
+def get_meat(meats : list) -> str:
+    pass
+
+
+def get_options(options : list) -> list:
+    pass
+
+
 # Main
 def main() -> int:
     # Load Stuff
     ingredients = load_ingredients("Data/Ingredients")
+
+    sandwich = Order()
+    sandwich.bread = get_bread(ingredients["breads"])
+
+    print(sandwich.bread)
 
     return 1
 
