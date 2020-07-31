@@ -37,8 +37,14 @@ def get_bread(breads : list) -> str:
     for i in range(len(breads)):
         print(f"{i + 1}\t: {breads[i]}")
     
-    bread_selection = input(f"\nEnter a Number Between 1 and {len(breads)}: ")
-    bread_selection = int(bread_selection)
+    input_valid = False
+    while not input_valid:
+        bread_selection = input(f"\nEnter a Number Between 1 and {len(breads)}: ")
+        try:
+            bread_selection = int(bread_selection)
+        except:
+            continue
+        input_valid = bread_selection >= 1 and bread_selection <= len(breads)
     
     return breads[bread_selection - 1]
 
