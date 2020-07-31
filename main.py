@@ -25,6 +25,14 @@ def load_restrictions(_dir : str) -> dict:
 
 
 def get_bread(breads : list) -> str:
+    """Gets user input for which bread they'd like.
+
+    Args:
+        breads (list): List of breads to choose from.
+
+    Returns:
+        str: The chosen bread.
+    """
     print("What Bread Would you Like?\n")
     for i in range(len(breads)):
         print(f"{i + 1}\t: {breads[i]}")
