@@ -87,6 +87,7 @@ def main() -> int:
 
     sandwich = Order()
     sandwich.bread = get_bread(ingredients["breads"])
+    print("\n\n\n")
     sandwich.meat = get_meat(ingredients["meats"])
 
     print(sandwich.bread)
