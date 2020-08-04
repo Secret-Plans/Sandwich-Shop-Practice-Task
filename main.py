@@ -25,6 +25,15 @@ def load_restrictions(_dir : str) -> dict:
     return restrictions
 
 
+def get_username() -> str:
+    """Gets the user's name.
+
+    Returns:
+        str: Desired username.
+    """
+    return input("Input username: ")
+
+
 def get_bread(breads : list) -> str:
     """Gets user input for which bread they'd like.
 
@@ -169,14 +178,25 @@ def print_order(sandwich : Order) -> None:
 
 # Main Function/Call
 def main() -> int:
-    # Load Stuff
     while True:
+        # Username Input
+        username = ""
+        try:
+            username = get_username()
+        except:
+            return -3 #Username Input Error
+
+
+        # Loading Ingredients
         try:
             ingredients = load_ingredients("Data/Ingredients")
         except:
-            return -5
+            return -10 #File Loading Error
 
+
+        # Sandwich Order (Putting it together)
         try:
+            print(f"Hello {username}, please enter your order...")
             sandwich = Order()
             sandwich.bread = get_bread(ingredients["breads"])
             print("\n\n=======================\n\n")
@@ -185,15 +205,17 @@ def main() -> int:
             sandwich.options = get_options(ingredients["options"])
             print("\n\n=======================\n\n")
         except:
-            return -1
+            return -1 #Sandwich Order Error
 
+
+        # Printing out Sandwich Order
         try:
             print_order(sandwich)
             print("\n\n\n\n")
             input("Press enter to continue...")
             print("\n\n\n\n")
         except:
-            return -2
+            return -2 #Sandwich Print Error
 
     return 1
 
@@ -206,4 +228,5 @@ if __name__ == "__main__":
     #   1 : OK
     #  -1 : Sandwich Order Error
     #  -2 : Sandwich Print Error
+    #  -3 : Username Input Error
     # -10 : File Loading Error
