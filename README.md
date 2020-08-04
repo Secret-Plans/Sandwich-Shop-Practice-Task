@@ -8,5 +8,6 @@ Version Control is based on branches of the main program, as follows:
 4. rev4 - option-selection
 5. rev5 - print-order-and-loop
 6. rev6 - ask-for-username
+7. rev7 - final-release
 
 The Master Branch will be the final and finished version of the program.
