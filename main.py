@@ -5,6 +5,7 @@ By Damon Jones for 11PRG 1.7 2020 Practice
 import json
 import os
 import sys
+import time
 
 from order import Order
 
@@ -121,7 +122,7 @@ def get_options(options : list) -> list:
         print("Enter nothing to continue\n")
 
         user_in = input(f"Enter a Number Between 1 and {len(options)}: ")
-        print("\n\n\n\n\n")
+        print("\n\n\n\n")
 
         # Check whether input is a valid integer and if so do stuff with it.
         try:
@@ -198,12 +199,21 @@ def main() -> int:
         try:
             print(f"Hello {username}, please enter your order...")
             sandwich = Order()
+            time.sleep(1)
+
             sandwich.bread = get_bread(ingredients["breads"])
+            print(f"You picked: {sandwich.bread}")
+            time.sleep(1)
             print("\n\n=======================\n\n")
+
             sandwich.meat = get_meat(ingredients["meats"])
+            print(f"You picked: {sandwich.meat}")
+            time.sleep(1)
             print("\n\n=======================\n\n")
+
             sandwich.options = get_options(ingredients["options"])
-            print("\n\n=======================\n\n")
+            print(f"You picked: {', '.join(sandwich.options)}")
+            time.sleep(1)
         except:
             return -1 #Sandwich Order Error
 
