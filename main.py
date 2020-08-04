@@ -4,6 +4,7 @@ By Damon Jones for 11PRG 1.7 2020 Practice
 # Imports
 import json
 import os
+import sys
 
 from order import Order
 
@@ -152,21 +153,47 @@ def check_number_of_selections(selections : list) -> int:
     return number_of_selections
 
 
-# Main
+def print_order(sandwich : Order) -> None:
+    print("=======================")
+    print("    YOUR ORDER IS    ")
+    print("=======================")
+    print(f"Bread:\t{sandwich.bread}")
+    print(f"Meat:\t{sandwich.meat}")
+    sys.stdout.write("Opts:") #Prints without a new line
+    if len(sandwich.options) > 0:
+        for item in sandwich.options:
+            print(f"\t{item}")
+    else:
+        print("\t[none]")
+
+
+# Main Function/Call
 def main() -> int:
     # Load Stuff
-    ingredients = load_ingredients("Data/Ingredients")
+    while True:
+        try:
+            ingredients = load_ingredients("Data/Ingredients")
+        except:
+            return -5
 
-    sandwich = Order()
-    sandwich.bread = get_bread(ingredients["breads"])
-    print("\n\n\n")
-    sandwich.meat = get_meat(ingredients["meats"])
-    print("\n\n\n")
-    sandwich.options = get_options(ingredients["options"])
+        try:
+            sandwich = Order()
+            sandwich.bread = get_bread(ingredients["breads"])
+            print("\n\n=======================\n\n")
+            sandwich.meat = get_meat(ingredients["meats"])
+            print("\n\n=======================\n\n")
+            sandwich.options = get_options(ingredients["options"])
+            print("\n\n=======================\n\n")
+        except:
+            return -1
 
-    print(sandwich.bread)
-    print(sandwich.meat)
-    print(sandwich.options)
+        try:
+            print_order(sandwich)
+            print("\n\n\n\n")
+            input("Press enter to continue...")
+            print("\n\n\n\n")
+        except:
+            return -2
 
     return 1
 
@@ -174,4 +201,9 @@ def main() -> int:
 if __name__ == "__main__":
     status = main()
 
-    print(f"Exited with status: {status}")
+    print(f"Exited with status: {status}") #For debug purposes
+    # Exit Statuses:
+    #   1 : OK
+    #  -1 : Sandwich Order Error
+    #  -2 : Sandwich Print Error
+    # -10 : File Loading Error
