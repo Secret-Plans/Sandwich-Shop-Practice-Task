@@ -6,5 +6,7 @@ Version Control is based on branches of the main program, as follows:
 2. rev2 - bread-selection
 3. rev3 - meat-selection
 4. rev4 - option-selection
+5. rev5 - print-order-and-loop
+6. rev6 - final-release
 
 The Master Branch will be the final and finished version of the program.
